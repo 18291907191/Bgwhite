@@ -30,7 +30,6 @@ export default {
     return {
       articleList: [
         {
-          id: 19,
           title: 'js为什么能成为当红明星？',
           imgTitle: 'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1569746487,5778137&fm=27&gp=0.jpg',
           desc: 'node.js底层有c++书写，搭载在浏览器中，v8引擎让js一跃成为当红明星，不用再受限制',

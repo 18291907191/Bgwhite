@@ -1,11 +1,11 @@
 <template>
-  <section>
-    This is my projects!;
-  </section>  
+  <section class="container">
+    文章详情
+  </section>
 </template>
 <script>
 export default {
-  layouts: 'login'
+  
 }
 </script>
 <style lang="less" scoped>
