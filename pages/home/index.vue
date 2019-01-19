@@ -97,19 +97,10 @@ export default {
       ]
     }
   },
-  methods: {
-  }
 }
 </script>
 <style lang="less" scoped>
 .container {
-  width: 100%;
-  height: 100%;
-  box-sizing: border-box;
-  // overflow-y: auto;
-  // display: flex;
-  // flex-direction: column;
-  // align-content: center;
 }
   header {
     width: 100%;

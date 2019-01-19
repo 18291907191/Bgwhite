@@ -62,7 +62,8 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    {src: '@/plugins/element-ui',    ssr:true},
+    { src: '@/plugins/element-ui',    ssr: true},
+    { src: '@/plugins/axios', ssr: true },
   ],
   /*
   ** Nuxt.js modules
@@ -85,6 +86,7 @@ module.exports = {
     /*
     ** You can extend webpack config here
     */
+   vender: ['axios'],
     extend (config, { isDev, isClient }) {
     }
   }
