@@ -1,7 +1,6 @@
 import * as axios from 'axios'
 import { getCookieInClient } from '../util/assist'
 import { Message } from 'element-ui';
-
 export default ({ app, store, redirect }) => {
   // The server-side needs a full url to works
   if (process.SERVER_BUILD) {

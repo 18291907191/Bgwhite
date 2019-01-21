@@ -38,12 +38,19 @@ module.exports = {
   /*
   ** Customize the progress-bar color
   */
-  loading: { color: '#04acf7'},
+  // 页面顶部loading效果
+  loading: {
+    color: '#04acf7',
+    height: '4px',
+    failedColor: 'red',
+    background: 'white'
+  },
   /**
    * Transition of the page
    */
   transition: {
-    name: 'page'
+    name: 'page',
+    mode: 'out-in'
   },
   /**
    * router of the project

@@ -51,8 +51,18 @@ export default {
         }*/
   },
   methods: {
+    checkLogin() {
+      if(!this.account || !this.password) {
+        return false;
+      }
+      return true;
+    },
     login() {
-      console.log(this.account,this.password);
+      let isLogin = this.checkLogin();
+      if(!isLogin) {
+        return false;
+      };
+      this.$nuxt.$loading.start();
       axios.post('/api/v1/user/login', {
           user: {
             account: this.account,
@@ -60,21 +70,17 @@ export default {
           }
         })
         .then(res => {
-          console.log(res);
+          this.$nuxt.$loading.finish();
           let data = res.data
           if(!res) {
             return false;
           }
           setToken(res.token);
-          this.$router.replace('/admin');
-          // if (data.code === 200) {
-          //   setToken(data.result)
-          //   this.$router.replace('/admin')
-          // }
+            this.$router.replace('/admin');
           return
         })
         .catch(error => {
-          console.error(error)
+          this.$nuxt.$loading.finish();
         })
     }
   }
