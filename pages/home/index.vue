@@ -2,7 +2,7 @@
 <!-- Home Article -->
   <section class="container">
     <header class="tc">
-      <!-- <h2 class="pr"> <span>Articles</span></h2> -->
+      <h2 class="pr"> <span>Articles</span></h2>
     </header>
     <ul class="article">
       <li v-for="(item,index) in articleList" :key="index">
@@ -15,7 +15,7 @@
           </p>
           <ul class="tags">
             标签:
-            <a v-for="(ele,i) in item.tags" :key="i">
+            <a v-for="(ele,i) in item.type" :key="i">
               {{ele.name}}
             </a>
           </ul>
@@ -25,6 +25,7 @@
   </section>  
 </template>
 <script>
+import axios from 'axios';
 export default {
   data() {
     return {
@@ -94,14 +95,31 @@ export default {
             {name:'node.js',tagsId:'node'},
           ]
         },
-      ]
+      ],
+      list: [],
+      form: {
+        type: 'javascript',
+        searchParams: 'nuxt插件',
+      }
     }
   },
+  methods: {
+    getData() {
+      axios.get('/article/api/v1/list',this.form)
+      .then(res => {
+        if(!res) {
+          return false;
+        }
+        this.articleList = res;
+      })
+    }
+  },
+  mounted() {
+    this.getData();
+  }
 }
 </script>
 <style lang="less" scoped>
-.container {
-}
   header {
     width: 100%;
     padding: 20px 0;
@@ -205,4 +223,61 @@ export default {
       }
     }
   }
+@media screen and (max-width: 960px) {
+  .article {
+    width: 100%;
+    padding: 20px 5px;
+    li {
+      padding: 20px 0;
+      display: flex;
+      border-bottom: 1px solid #f7f8fa;
+      .cont-img {
+        width: 260px;
+        height: 180px;
+        margin-right: 20px;
+        overflow: hidden;
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+      .cont-txt {
+        box-sizing: border-box;
+        width: 100%;
+        height: 180px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        .cont-tit {
+          color: #3084bb;
+          font-size: 18px;
+          text-decoration: none;
+          margin-bottom: 30px;
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+        p {
+          width: 100%;
+          flex: 1;
+          overflow: hidden;
+          padding: 0 20px 10px 0;
+          font-size: 16px;
+          line-height: 24px;
+          color: #555;
+          text-indent: 28px;
+        }
+        .tags {
+          width: 100%;
+          height: 30px;
+          line-height: 30px;
+          a {
+            color: #999;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+}
 </style>

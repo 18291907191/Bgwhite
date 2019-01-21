@@ -63,7 +63,7 @@ export default {
         return false;
       };
       this.$nuxt.$loading.start();
-      axios.post('/api/v1/user/login', {
+      axios.post('/user/api/v1/login', {
           user: {
             account: this.account,
             password: this.password

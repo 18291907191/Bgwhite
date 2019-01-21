@@ -63,6 +63,9 @@ export default {
       display: flex;
       align-items: center;
       justify-content: space-between;
+      .menu {
+        display: flex;
+      }
       a {
         color: #777;
         text-decoration: none;
@@ -100,4 +103,66 @@ export default {
       }
     }
   }
+@media screen and (max-width: 960px) {
+    header {
+      padding: 0;
+    h3 {
+      font-size: 16px;
+      color: rgba(250, 250, 250, 0.85);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      padding: 10px 0;
+      img {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        margin: 0 auto;
+      }
+    }
+    .nav {
+      width: 100%;
+      margin-top: 15px;
+      flex-direction: column;
+      a {
+        color: #777;
+        text-decoration: none;
+        font-size: 14px;
+        margin: 0 8px;
+        &:hover {
+          color:rgba(250, 250, 250, 1);
+        }
+      }
+    }
+    .search {
+      width: 80%;
+      padding: 10px 0;
+      input {
+        width: 80%;
+        height: 32px;
+        line-height: 32px;
+        border: 2px solid rgba(250, 250, 250, 0.4);
+        font-size: 14px;
+        background-color: transparent;
+        color: #ffffff;
+        text-indent: 10px;
+        outline: none;
+        vertical-align: middle;
+      }
+      button {
+        display: inline-block;
+        padding: 0 10px;
+        height: 32px;
+        line-height: 28px;
+        outline: none;
+        background-color: transparent;
+        color: #ffffff;
+        border: 2px solid rgba(250, 250, 250, 0.4);
+        border-left: 0;
+        cursor: pointer;
+      }
+    }
+  }
+}
 </style>

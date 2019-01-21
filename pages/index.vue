@@ -57,4 +57,10 @@ export default {
     }
   }
 }
+@media screen and (max-width: 960px) {
+  .links {
+    display: flex;
+    flex-direction: column;
+  }
+}
 </style>

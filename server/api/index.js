@@ -8,9 +8,9 @@ module.exports = app => {
     //     res.json({ message: '欢迎使用justyeh的API服务！' });
     // })
 
-    app.use('/api/v1/user', require('./user'))
+    app.use('/user/api/v1/', require('./user'));
 
-    // app.use('/api/post', require('./post'))
+    app.use('/article/api/v1/', require('./articles'));
 
     // app.use('/api/tag', require('./tag'))
 

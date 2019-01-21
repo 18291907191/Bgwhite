@@ -65,5 +65,40 @@ export default ({ app, store, redirect }) => {
     }
     return Promise.reject(error);
   });
+  axios.defaults.timeout = 300000; // 请求超时
+  axios.postJson = (url, params) => {
+    return axios({
+      method: 'post',
+      url: url,
+      data: params,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+  }
+  axios.post = (url, params) => {
+    return axios({
+      method: 'post',
+      url: url,
+      data: params,
+      transformRequest: [function (data) {
+        let ret = ''
+        for (let it in data) {
+          ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&'
+        }
+        return ret
+      }],
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
+    });
+  }
+  axios.get = (url, data = {}) => {
+    return axios({
+      method: 'get',
+      params: data,
+      url: url,
+    });
+  }
 
 }
