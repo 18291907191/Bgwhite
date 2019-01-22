@@ -14,7 +14,7 @@
         <nuxt-link to="/manage">Manage</nuxt-link>
       </div>
       <div class="search">
-        <input type="text" v-model="searchContent"><button @click="search(searchContent)">Search</button>
+        <input type="text" v-model="searchContent" @keyup.enter="search(searchContent)"><button @click="search(searchContent)">Search</button>
       </div>
     </div>
   </header>  
@@ -28,7 +28,9 @@ export default {
   },
   methods: {
     search(data) {
-      console.log(data);
+      this.$store.commit('setSearch',data);
+    },
+    tagEnter() {
     },
     jump() {
       this.$router.push({

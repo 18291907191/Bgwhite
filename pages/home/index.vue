@@ -30,81 +30,24 @@ export default {
   data() {
     return {
       articleList: [
-        {
-          id: 19,
-          title: 'js为什么能成为当红明星？',
-          imgTitle: 'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1569746487,5778137&fm=27&gp=0.jpg',
-          desc: 'node.js底层有c++书写，搭载在浏览器中，v8引擎让js一跃成为当红明星，不用再受限制',
-          tags: [
-            {name:'node.js',tagsId:'node'},
-          ]
-        },
-        {
-          title: 'js为什么能成为当红明星？',
-          imgTitle: 'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1569746487,5778137&fm=27&gp=0.jpg',
-          desc: 'node.js底层有c++书写，搭载在浏览器中，v8引擎让js一跃成为当红明星，不用再受限制',
-          tags: [
-            {name:'node.js',tagsId:'node'},
-          ]
-        },
-        {
-          title: 'js为什么能成为当红明星？',
-          imgTitle: 'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1569746487,5778137&fm=27&gp=0.jpg',
-          desc: 'node.js底层有c++书写，搭载在浏览器中，v8引擎让js一跃成为当红明星，不用再受限制',
-          tags: [
-            {name:'node.js',tagsId:'node'},
-          ]
-        },
-        {
-          title: 'js为什么能成为当红明星？',
-          imgTitle: 'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1569746487,5778137&fm=27&gp=0.jpg',
-          desc: 'node.js底层有c++书写，搭载在浏览器中，v8引擎让js一跃成为当红明星，不用再受限制',
-          tags: [
-            {name:'node.js',tagsId:'node'},
-          ]
-        },
-                {
-          title: 'js为什么能成为当红明星？',
-          imgTitle: 'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1569746487,5778137&fm=27&gp=0.jpg',
-          desc: 'node.js底层有c++书写，搭载在浏览器中，v8引擎让js一跃成为当红明星，不用再受限制',
-          tags: [
-            {name:'node.js',tagsId:'node'},
-          ]
-        },
-        {
-          title: 'js为什么能成为当红明星？',
-          imgTitle: 'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1569746487,5778137&fm=27&gp=0.jpg',
-          desc: 'node.js底层有c++书写，搭载在浏览器中，v8引擎让js一跃成为当红明星，不用再受限制',
-          tags: [
-            {name:'node.js',tagsId:'node'},
-          ]
-        },
-        {
-          title: 'js为什么能成为当红明星？',
-          imgTitle: 'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1569746487,5778137&fm=27&gp=0.jpg',
-          desc: 'node.js底层有c++书写，搭载在浏览器中，v8引擎让js一跃成为当红明星，不用再受限制',
-          tags: [
-            {name:'node.js',tagsId:'node'},
-          ]
-        },
-        {
-          title: 'js为什么能成为当红明星？',
-          imgTitle: 'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1569746487,5778137&fm=27&gp=0.jpg',
-          desc: 'node.js底层有c++书写，搭载在浏览器中，v8引擎让js一跃成为当红明星，不用再受限制',
-          tags: [
-            {name:'node.js',tagsId:'node'},
-          ]
-        },
       ],
       list: [],
       form: {
-        type: 'javascript',
-        searchParams: 'nuxt插件',
-      }
+        type: '',
+        searchParams: '',
+      },
+    }
+  },
+  watch: {
+    '$store.state.searchParams'() {
+      this.form.searchParams = this.$store.state.searchParams;
+      this.getData();
     }
   },
   methods: {
     getData() {
+      this.$nuxt.$loading.start();
+      console.log(this.$nuxt.$loading.start());
       axios.get('/article/api/v1/list',this.form)
       .then(res => {
         if(!res) {
@@ -112,6 +55,7 @@ export default {
         }
         this.articleList = res;
       })
+      this.$nuxt.$loading.finish();
     }
   },
   mounted() {
