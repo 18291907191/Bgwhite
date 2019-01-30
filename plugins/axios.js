@@ -1,12 +1,46 @@
 import * as axios from 'axios'
 import { getCookieInClient } from '../util/assist'
 import { Message } from 'element-ui';
+import Vue from 'vue';
+
 export default ({ app, store, redirect }) => {
   // The server-side needs a full url to works
   if (process.SERVER_BUILD) {
     axios.defaults.baseURL = `http://${process.env.HOST || 'localhost'}:${process.env.PORT || 3000}`
   }
+  axios.defaults.timeout = 300000; // 请求超时
 
+var loading;
+function startLoading() {
+  loading = Vue.prototype.$loading({
+    lock: true,
+    text: "客观，别慌。",
+    background: 'rgba(38,50, 56, .4)',
+    target: document.querySelector('.loading-area') //设置加载动画区域
+  });
+}
+
+function endLoading() {
+  loading.close();
+}
+
+// 声明一个对象用于存储请求个数
+var needLoadingRequestCount = 0;
+
+function showFullScreenLoading() {
+  if (needLoadingRequestCount === 0) {
+    startLoading();
+  }
+  needLoadingRequestCount++;
+};
+
+function tryHideFullScreenLoading() {
+  if (needLoadingRequestCount <= 0) return;
+  needLoadingRequestCount--;
+  if (needLoadingRequestCount === 0) {
+    endLoading();
+  }
+};
   // interceptors request
   axios.interceptors.request.use(config => {
     if (typeof document === 'object') {
@@ -15,8 +49,10 @@ export default ({ app, store, redirect }) => {
         config.headers.Authorization = token;
       }
     }
+    showFullScreenLoading();
     return config;
   }, err => {
+    tryHideFullScreenLoading();
     Message.error({
       message: '请求超时'
     });
@@ -24,6 +60,7 @@ export default ({ app, store, redirect }) => {
   });
 
   axios.interceptors.response.use(res => {
+    tryHideFullScreenLoading();
     switch(res.data.code) {
       case 200:
         return res.data.result;
@@ -42,7 +79,8 @@ export default ({ app, store, redirect }) => {
         return Promise.reject(res);  
     }
   }, error => {
-    switch(err.response.status) {
+    tryHideFullScreenLoading();
+    switch(error.response.status) {
       case 500:
         Message.error({
           message: '服务器出差去了~'
@@ -65,7 +103,6 @@ export default ({ app, store, redirect }) => {
     }
     return Promise.reject(error);
   });
-  axios.defaults.timeout = 300000; // 请求超时
   axios.postJson = (url, params) => {
     return axios({
       method: 'post',

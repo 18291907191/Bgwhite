@@ -38,12 +38,19 @@ module.exports = {
   /*
   ** Customize the progress-bar color
   */
-  loading: { color: '#04acf7'},
+  // 页面顶部loading效果
+  loading: {
+    color: '#04acf7',
+    height: '4px',
+    failedColor: 'red',
+    background: 'white'
+  },
   /**
    * Transition of the page
    */
   transition: {
-    name: 'page'
+    name: 'page',
+    mode: 'out-in'
   },
   /**
    * router of the project
@@ -62,7 +69,9 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    {src: '@/plugins/element-ui',    ssr:true},
+    { src: '@/plugins/element-ui',    ssr: true},
+    { src: '@/plugins/axios', ssr: true },
+    // { src: '@/plugins/vue-particles', ssr: false},
   ],
   /*
   ** Nuxt.js modules
@@ -85,6 +94,7 @@ module.exports = {
     /*
     ** You can extend webpack config here
     */
+   vender: ['axios'],
     extend (config, { isDev, isClient }) {
     }
   }

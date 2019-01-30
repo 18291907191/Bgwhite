@@ -3,7 +3,7 @@ let router = express.Router();
 
 var userSys = require('../service/userSys');
 
-// 登陆
+// login
 router.post('/login',(req,res,next) => {
   let user = req.body.user || null;
   userSys.auth(user,result => res.json(result));

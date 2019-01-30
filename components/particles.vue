@@ -17,7 +17,7 @@
       },
       roundColor: {
         type: String,
-        default: 'rgba(45,140,210,0.1)' // 星星的颜色
+        default: '#f9f9f9' // 星星的颜色
       },
     },
     data() {
@@ -45,7 +45,6 @@
 
       // 设置线条和星星颜色
       this.context.strokeStyle = this.lineColor;
-      this.context.strokeStyle = "#ffffff";
       this.context.lineWidth = 1;
       this.context.fillStyle = this.roundColor;
 
@@ -172,8 +171,8 @@
   .starry-sky {
     width: 100%;
     height: 100%;
-    position: fixed;
-    > canvas {
+    z-index: 999;
+    /deep/canvas {
       width: 100%;
       height: 100%;
     }

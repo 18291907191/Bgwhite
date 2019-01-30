@@ -1,7 +1,7 @@
 <template>
   <div class="app">
     <my-header></my-header>
-    <nuxt class="main"></nuxt>
+    <nuxt class="main loading-area"></nuxt>
   </div>
 </template>
 
@@ -34,14 +34,18 @@ html,body {
   width: 100%;
   height: 100%;
 }
-  .app {
+.app {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  .main {
+    background-color: #F7F8FA;
     width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    .main {
-      background-color: #F7F8FA;
-    }
+    flex: 1;
   }
+  
+}
 </style>
 

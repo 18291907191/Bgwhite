@@ -43,7 +43,6 @@ module.exports = {
     color: '#04acf7',
     height: '4px',
     failedColor: 'red',
-    background: 'white'
   },
   /**
    * Transition of the page
@@ -71,6 +70,7 @@ module.exports = {
   plugins: [
     { src: '@/plugins/element-ui',    ssr: true},
     { src: '@/plugins/axios', ssr: true },
+    // { src: '@/plugins/vue-particles', ssr: false},
   ],
   /*
   ** Nuxt.js modules

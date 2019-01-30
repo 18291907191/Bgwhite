@@ -3,7 +3,11 @@ let crypto = require('crypto')
 let db = require('../util/database.query.js')
 
 class User {
-  //验证用户名密码
+  /**
+   * @description 账号和密码
+   * @param {*} account/password 
+   * @param {*} callback 
+   */
   auth(user, callback) {
     let sql = `select id from users where username = '${user.account}' and password = '${user.password}'`;
     //加密密码

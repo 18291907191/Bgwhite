@@ -1,5 +1,5 @@
 <template>
-  <div class="app">
+  <div class="app loading-area">
     <nuxt></nuxt>
     <my-footer></my-footer>
   </div>

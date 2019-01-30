@@ -1,9 +1,16 @@
 <template>
   <header>
-    <h3>
-      <img class="csp" @click="jump()" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1532412479772&di=054181aa27a78980933091e0fd338d3f&imgtype=0&src=http%3A%2F%2Fimg5.duitang.com%2Fuploads%2Fitem%2F201409%2F21%2F20140921125932_2mAvm.thumb.700_0.jpeg" title="狗尾草">
-      狗尾草的前端博客
-    </h3>
+    <div class="hd df-sb">
+      <h3>
+        <img class="csp" @click="jump()" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1532412479772&di=054181aa27a78980933091e0fd338d3f&imgtype=0&src=http%3A%2F%2Fimg5.duitang.com%2Fuploads%2Fitem%2F201409%2F21%2F20140921125932_2mAvm.thumb.700_0.jpeg" title="狗尾草">
+        狗尾草的前端博客
+      </h3>
+      <div class="panel">
+        <p>坐标 西安 | 天气 小雨</p>
+        <p>公告</p>
+        <p>网站正建设中，即将完成，敬请期待</p>
+      </div>
+    </div>
     <div class="nav">
       <div class="menu">
         <nuxt-link to="/home">Home</nuxt-link>
@@ -30,11 +37,9 @@ export default {
     search(data) {
       this.$store.commit('setSearch',data);
     },
-    tagEnter() {
-    },
     jump() {
       this.$router.push({
-        path: '/home/about'
+        path: '/'
       })
     }
   }
@@ -47,6 +52,14 @@ export default {
     box-sizing: border-box;
     padding: 40px 50px;
     background-color: @bg-black;
+    .hd {
+      color: rgba(250, 250, 250, 0.85);
+      .panel {
+        width: 356px;
+        text-align: left;
+        line-height: 30px;
+      }
+    }
     h3 {
       font-size: 56px;
       color: rgba(250, 250, 250, 0.85);

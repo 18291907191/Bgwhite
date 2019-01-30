@@ -12,7 +12,7 @@
     <div>
       <p>友情链接：</p>
       <div class="links">
-        <a target="_blank" href="http://www.cnblos.com/bgwhite">狗尾草博客园</a>
+        <a target="_blank" href="http://www.cnblogs.com/bgwhite">狗尾草博客园</a>
         <!-- <a target="_blank" href="http://www.javabb.cn/">秦豹的个人网站</a> -->
       </div>
     </div>

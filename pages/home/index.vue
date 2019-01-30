@@ -7,7 +7,7 @@
     <ul class="article">
       <li v-for="(item,index) in articleList" :key="index">
         <div class="cont-img">
-          <img :src="item.imgTitle" :alt="item.tags">
+          <img :src="item.title_img" :alt="item.tags">
         </div>
         <div class="cont-txt">
           <nuxt-link class="cont-tit" :to="`home/article_detail/${item.id}`">{{item.title}}</nuxt-link>
@@ -15,8 +15,8 @@
           </p>
           <ul class="tags">
             标签:
-            <a v-for="(ele,i) in item.type" :key="i">
-              {{ele.name}}
+            <a v-for="(ele,i) in item.tags" :key="i" @click="searchTags(ele.tag)">
+              {{ele.tag}}
             </a>
           </ul>
         </div>
@@ -33,29 +33,32 @@ export default {
       ],
       list: [],
       form: {
-        type: '',
-        searchParams: '',
+        tag: '',
+        title: '',
       },
     }
   },
   watch: {
-    '$store.state.searchParams'() {
-      this.form.searchParams = this.$store.state.searchParams;
+    '$store.state.title'() {
+      this.form.title = this.$store.state.title;
       this.getData();
     }
   },
   methods: {
     getData() {
-      this.$nuxt.$loading.start();
-      console.log(this.$nuxt.$loading.start());
+        // this.$nuxt.$loading.start()
       axios.get('/article/api/v1/list',this.form)
       .then(res => {
         if(!res) {
           return false;
         }
         this.articleList = res;
+        // this.$nuxt.$loading.finish();
       })
-      this.$nuxt.$loading.finish();
+    },
+    searchTags(tagName) {
+      this.form.tag = tagName;
+      this.getData();
     }
   },
   mounted() {
@@ -119,6 +122,9 @@ export default {
       padding: 20px 30px;
       display: flex;
       border-bottom: 1px solid #f7f8fa;
+      &:hover {
+        background-color: rgba(100, 100, 100, 0.2);
+      }
       .cont-img {
         width: 260px;
         height: 180px;
@@ -162,6 +168,7 @@ export default {
           a {
             color: #999;
             cursor: pointer;
+            margin: 0 5px;
           }
         }
       }

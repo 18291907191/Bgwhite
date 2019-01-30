@@ -2,7 +2,7 @@
 <!-- Home Article -->
   <section class="container">
     <header class="tc">
-      <!-- <h2 class="pr"> <span>Articles</span></h2> -->
+      <h2 class="pr"> <span>Articles</span></h2>
     </header>
     <ul class="article">
       <li v-for="(item,index) in articleList" :key="index">
@@ -15,7 +15,7 @@
           </p>
           <ul class="tags">
             标签:
-            <a v-for="(ele,i) in item.tags" :key="i">
+            <a v-for="(ele,i) in item.type" :key="i">
               {{ele.name}}
             </a>
           </ul>
@@ -25,91 +25,44 @@
   </section>  
 </template>
 <script>
+import axios from 'axios';
 export default {
   data() {
     return {
       articleList: [
-        {
-          title: 'js为什么能成为当红明星？',
-          imgTitle: 'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1569746487,5778137&fm=27&gp=0.jpg',
-          desc: 'node.js底层有c++书写，搭载在浏览器中，v8引擎让js一跃成为当红明星，不用再受限制',
-          tags: [
-            {name:'node.js',tagsId:'node'},
-          ]
-        },
-        {
-          title: 'js为什么能成为当红明星？',
-          imgTitle: 'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1569746487,5778137&fm=27&gp=0.jpg',
-          desc: 'node.js底层有c++书写，搭载在浏览器中，v8引擎让js一跃成为当红明星，不用再受限制',
-          tags: [
-            {name:'node.js',tagsId:'node'},
-          ]
-        },
-        {
-          title: 'js为什么能成为当红明星？',
-          imgTitle: 'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1569746487,5778137&fm=27&gp=0.jpg',
-          desc: 'node.js底层有c++书写，搭载在浏览器中，v8引擎让js一跃成为当红明星，不用再受限制',
-          tags: [
-            {name:'node.js',tagsId:'node'},
-          ]
-        },
-        {
-          title: 'js为什么能成为当红明星？',
-          imgTitle: 'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1569746487,5778137&fm=27&gp=0.jpg',
-          desc: 'node.js底层有c++书写，搭载在浏览器中，v8引擎让js一跃成为当红明星，不用再受限制',
-          tags: [
-            {name:'node.js',tagsId:'node'},
-          ]
-        },
-                {
-          title: 'js为什么能成为当红明星？',
-          imgTitle: 'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1569746487,5778137&fm=27&gp=0.jpg',
-          desc: 'node.js底层有c++书写，搭载在浏览器中，v8引擎让js一跃成为当红明星，不用再受限制',
-          tags: [
-            {name:'node.js',tagsId:'node'},
-          ]
-        },
-        {
-          title: 'js为什么能成为当红明星？',
-          imgTitle: 'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1569746487,5778137&fm=27&gp=0.jpg',
-          desc: 'node.js底层有c++书写，搭载在浏览器中，v8引擎让js一跃成为当红明星，不用再受限制',
-          tags: [
-            {name:'node.js',tagsId:'node'},
-          ]
-        },
-        {
-          title: 'js为什么能成为当红明星？',
-          imgTitle: 'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1569746487,5778137&fm=27&gp=0.jpg',
-          desc: 'node.js底层有c++书写，搭载在浏览器中，v8引擎让js一跃成为当红明星，不用再受限制',
-          tags: [
-            {name:'node.js',tagsId:'node'},
-          ]
-        },
-        {
-          title: 'js为什么能成为当红明星？',
-          imgTitle: 'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1569746487,5778137&fm=27&gp=0.jpg',
-          desc: 'node.js底层有c++书写，搭载在浏览器中，v8引擎让js一跃成为当红明星，不用再受限制',
-          tags: [
-            {name:'node.js',tagsId:'node'},
-          ]
-        },
-      ]
+      ],
+      list: [],
+      form: {
+        type: '',
+        searchParams: '',
+      },
+    }
+  },
+  watch: {
+    '$store.state.searchParams'() {
+      this.form.searchParams = this.$store.state.searchParams;
+      this.getData();
     }
   },
   methods: {
+    getData() {
+        // this.$nuxt.$loading.start()
+        axios.get('/article/api/v1/list',this.form)
+        .then(res => {
+          if(!res) {
+            return false;
+          }
+          this.articleList = res;
+          // this.$nuxt.$loading.finish();
+        })
+    }
+  },
+  mounted() {
+    this.getData();
   }
 }
 </script>
 <style lang="less" scoped>
-.container {
-  width: 100%;
-  height: 100%;
-  box-sizing: border-box;
-  // overflow-y: auto;
-  // display: flex;
-  // flex-direction: column;
-  // align-content: center;
-}
   header {
     width: 100%;
     padding: 20px 0;
@@ -213,4 +166,61 @@ export default {
       }
     }
   }
+@media screen and (max-width: 960px) {
+  .article {
+    width: 100%;
+    padding: 20px 5px;
+    li {
+      padding: 20px 0;
+      display: flex;
+      border-bottom: 1px solid #f7f8fa;
+      .cont-img {
+        width: 260px;
+        height: 180px;
+        margin-right: 20px;
+        overflow: hidden;
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+      .cont-txt {
+        box-sizing: border-box;
+        width: 100%;
+        height: 180px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        .cont-tit {
+          color: #3084bb;
+          font-size: 18px;
+          text-decoration: none;
+          margin-bottom: 30px;
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+        p {
+          width: 100%;
+          flex: 1;
+          overflow: hidden;
+          padding: 0 20px 10px 0;
+          font-size: 16px;
+          line-height: 24px;
+          color: #555;
+          text-indent: 28px;
+        }
+        .tags {
+          width: 100%;
+          height: 30px;
+          line-height: 30px;
+          a {
+            color: #999;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+}
 </style>

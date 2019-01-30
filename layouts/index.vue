@@ -1,22 +1,39 @@
 <template>
 <!--S 首页 -->
-  <div class="container">
-    <!-- <Background :point="point" :lineColor="lineColor" :roundColor="roundColor"></Background> -->
-      <nuxt />
+  <div class="container loading-area">
+      <!-- <vue-particles
+        color="#ffffff"
+        :particleOpacity="0.7"
+        :particlesNumber="80"
+        shapeType="circle"
+        :particleSize="4"
+        linesColor="#fff"
+        :linesWidth="1"
+        :lineLinked="true"
+        :lineOpacity="0.4"
+        :linesDistance="150"
+        :moveSpeed="2"
+        :hoverEffect="true"
+        hoverMode="grab"
+        :clickEffect="true"
+        clickMode="push"
+        class="lizi"
+      >
+      </vue-particles> -->
+      <nuxt/>
   </div><!--E 首页 -->
 </template>
 <script>
-import Background from '@/components/Background.vue'
 export default {
   components: {
-    Background
   },
   data() {
     return {
-      point: 80,
-      lineColor: "#ffffff",
-      roundColor: "#ffffff"
     }
+  },
+  methods: {
+  },
+  mounted() {
   }
 }
 </script>
@@ -32,5 +49,12 @@ export default {
   z-index: 1000;
   background-color: rgba(38,50, 56, 1);
   background-image: url("https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture");
+}
+.lizi {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
 }
 </style>

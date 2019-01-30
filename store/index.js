@@ -8,12 +8,12 @@ Vue.use(Vuex)
 const store = () => new Vuex.Store({
 
   state: {
-    searchParams: '',
+    title: '',
   },
 
   mutations: {
     setSearch: function (state, params) {
-      state.searchParams = params;
+      state.title = params;
     }
   },
   actions: {
