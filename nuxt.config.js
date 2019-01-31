@@ -54,7 +54,8 @@ module.exports = {
   /**
    * router of the project
    */
-  router: { 
+  router: {
+    middleware: 'adminAuth' 
   },
   /*
   ** Global CSS
@@ -62,7 +63,8 @@ module.exports = {
   css: [
     'element-ui/lib/theme-chalk/index.css',
     '~/assets/css/base.less',
-    '~/assets/css/skin.less'
+    '~/assets/css/skin.less',
+    {src: "mavon-editor/dist/css/index.css"},
   ],
   /*
   ** Plugins to load before mounting the App
@@ -70,7 +72,8 @@ module.exports = {
   plugins: [
     { src: '@/plugins/element-ui',    ssr: true},
     { src: '@/plugins/axios', ssr: true },
-    // { src: '@/plugins/vue-particles', ssr: false},
+    {src: '@/plugins/vue-markdown.js', ssr: false},
+    { src: '@/plugins/vue-particles', ssr: false},
   ],
   /*
   ** Nuxt.js modules

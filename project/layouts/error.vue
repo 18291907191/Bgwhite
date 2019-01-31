@@ -1,5 +1,5 @@
 <template>
-  <div class="error">
+  <div class="error loading-area">
     <!-- <img src="../assets/img/logo.png" alt="Nuxt.js Logo" class="logo" /> -->
     <h1 class="title">
       {{ error.statusCode }}

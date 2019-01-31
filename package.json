@@ -24,6 +24,7 @@
     "jwt-simple": "^0.5.5",
     "less": "^3.9.0",
     "less-loader": "^4.1.0",
+    "mavon-editor": "^2.6.17",
     "moment": "^2.24.0",
     "mysql": "^2.16.0",
     "nuxt": "^2.0.0",

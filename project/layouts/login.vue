@@ -1,5 +1,5 @@
 <template>
-  <div class="app">
+  <div class="app loading-area">
     <nuxt></nuxt>
     <my-footer></my-footer>
   </div>
@@ -17,7 +17,7 @@ export default {
 
 <style lang="less">
 .app {
-    background: rgb(38, 50, 56) no-repeat center;
+    // background: rgb(38, 50, 56) no-repeat center;
     width: 100%;
     height: 100%;
     display: flex;

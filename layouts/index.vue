@@ -1,7 +1,7 @@
 <template>
 <!--S 首页 -->
   <div class="container loading-area">
-      <!-- <vue-particles
+      <no-ssr><vue-particles
         color="#ffffff"
         :particleOpacity="0.7"
         :particlesNumber="80"
@@ -19,7 +19,7 @@
         clickMode="push"
         class="lizi"
       >
-      </vue-particles> -->
+      </vue-particles></no-ssr>
       <nuxt/>
   </div><!--E 首页 -->
 </template>

@@ -1,7 +1,7 @@
 <template>
 <!--S 首页 -->
-  <div class="container">
-      <!-- <vue-particles
+  <div class="container loading-area">
+      <no-ssr><vue-particles
         color="#ffffff"
         :particleOpacity="0.7"
         :particlesNumber="80"
@@ -19,8 +19,8 @@
         clickMode="push"
         class="lizi"
       >
-      </vue-particles> -->
-      <nuxt />
+      </vue-particles></no-ssr>
+      <nuxt/>
   </div><!--E 首页 -->
 </template>
 <script>
@@ -31,6 +31,10 @@ export default {
     return {
     }
   },
+  methods: {
+  },
+  mounted() {
+  }
 }
 </script>
 
@@ -44,7 +48,7 @@ export default {
   text-align: center;
   z-index: 1000;
   background-color: rgba(38,50, 56, 1);
-  // background-image: url("https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture");
+  background-image: url("https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture");
 }
 .lizi {
   width: 100%;

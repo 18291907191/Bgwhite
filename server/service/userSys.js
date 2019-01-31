@@ -28,10 +28,12 @@ let auth = (user, callback) => {
     }
     //设置七天有效期
     let expires = moment().add(7, 'days').valueOf();
+    console.log('31',expires);
     let token = jwt.encode({
       uid: user.userId,
       exp: expires
     }, jwtSecret)
+    console.log('36',token);
     return callback({
       code: 200,
       message: 'success',

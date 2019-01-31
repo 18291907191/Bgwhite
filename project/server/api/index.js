@@ -9,7 +9,6 @@ module.exports = app => {
     // })
 
     app.use('/user/api/v1/', require('./user'));
-
     app.use('/article/api/v1/', require('./articles'));
 
     // app.use('/api/tag', require('./tag'))

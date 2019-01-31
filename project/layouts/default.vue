@@ -1,28 +1,32 @@
 <template>
   <div class="app">
     <my-header></my-header>
+    <share></share>
     <nuxt class="main loading-area"></nuxt>
   </div>
 </template>
 
 <script>
+import Share from '@/components/Share.vue';
 import MyHeader from '@/components/Header.vue'
-import {seo} from '../util/assist'
+import { seo } from '../util/assist'
 
 export default {
   components: {
     MyHeader,
+    Share
   },
   methods: {
   },
-  mounted(){
+  mounted() {
     //直接将SEO脚本放在页面会被当成文本解析，所以将方法提取出来，放到mounted hook里面执行
     seo()
   }
 }
 </script>
 <style lang="less" scoped>
-html,body {
+html,
+body {
   width: 100%;
   height: 100%;
 }
@@ -41,11 +45,10 @@ html,body {
   flex-direction: column;
   overflow: auto;
   .main {
-    background-color: #F7F8FA;
+    background-color: #f7f8fa;
     width: 100%;
     flex: 1;
   }
-  
 }
 </style>
 

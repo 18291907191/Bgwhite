@@ -1,7 +1,7 @@
 <template>
   <div class="login">
     <div class="form">
-      <!-- <img src="~assets/img/head.jpg" alt="logo"> -->
+      <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1532412479772&di=054181aa27a78980933091e0fd338d3f&imgtype=0&src=http%3A%2F%2Fimg5.duitang.com%2Fuploads%2Fitem%2F201409%2F21%2F20140921125932_2mAvm.thumb.700_0.jpeg" alt="logo">
       <div class="form-group">
         <label for="account">
           <i class="fa fa-user"></i>
@@ -63,7 +63,7 @@ export default {
         return false;
       };
       this.$nuxt.$loading.start();
-      axios.post('/user/api/v1/login', {
+      axios.postJson('/user/api/v1/login', {
           user: {
             account: this.account,
             password: this.password
@@ -76,7 +76,7 @@ export default {
             return false;
           }
           setToken(res.token);
-            this.$router.replace('/admin');
+          this.$router.back();
           return
         })
         .catch(error => {
@@ -103,6 +103,7 @@ img {
   display: flex;
   justify-content: center;
   align-items: center;
+  background: rgb(38, 50, 56);
 }
 
 .form {

@@ -122,9 +122,6 @@ export default {
       padding: 20px 30px;
       display: flex;
       border-bottom: 1px solid #f7f8fa;
-      &:hover {
-        background-color: rgba(100, 100, 100, 0.2);
-      }
       .cont-img {
         width: 260px;
         height: 180px;

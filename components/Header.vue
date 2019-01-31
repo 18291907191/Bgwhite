@@ -18,7 +18,7 @@
         <nuxt-link to="/home/project">Project</nuxt-link>
         <nuxt-link to="/home/tools">Tools</nuxt-link>
         <nuxt-link to="/gitHub">GitHub</nuxt-link>
-        <nuxt-link to="/manage">Manage</nuxt-link>
+        <nuxt-link to="/admin">Manage</nuxt-link>
       </div>
       <div class="search">
         <input type="text" v-model="searchContent" @keyup.enter="search(searchContent)"><button @click="search(searchContent)">Search</button>
