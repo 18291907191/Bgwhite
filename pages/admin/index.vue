@@ -40,8 +40,10 @@
         <span style="font-size:16px;"><font style="color: #3576e0;">{{190 - form.abstract.length}}</font>/190</span>
       </el-form-item>
       <el-form-item label="Content">
-        <el-col>
-          <no-ssr><mavon-editor class="markdown" :toolbars="markdownOption" v-model="handbook"/></no-ssr>
+        <el-col class="markdown">
+          <el-button class="btn btn-small btn-main" @click="preview = !preview">{{preview ? '编辑' : '预览'}}</el-button>
+          <textarea v-model="form.content"></textarea>
+          <vue-markdown :markdown="previewMarkdown" v-show="preview"></vue-markdown>
         </el-col>
       </el-form-item>
       <el-form-item>
@@ -56,16 +58,23 @@
 <script>
 import AdminTitle  from '@/components/admin/Title';
 import axios from 'axios'
+import VueMarkdown from '@/components/form/VueMarkdown'
 
 export default {
   layout: 'admin',
   components: {
     AdminTitle,
+    VueMarkdown
   },
   watch: {
     'form.abstract'(curVal, oldVal) {
       if (curVal.length > this.textNum) {
         this.textareaValue = String(curVal).slice(0, this.textNum);
+      }
+    },
+    preview() {
+      if (this.preview) {
+        this.previewMarkdown = this.form.content
       }
     }
   },
@@ -90,45 +99,15 @@ export default {
         {label:'node.js',value:'node.js'}
       ], //标签选择器
       textNum: 200,
-      markdownOption:{
-        bold: true, // 粗体
-        italic: true, // 斜体
-        header: true, // 标题
-        underline: true, // 下划线
-        strikethrough: true, // 中划线
-        mark: true, // 标记
-        superscript: true, // 上角标
-        subscript: true, // 下角标
-        quote: true, // 引用
-        ol: true, // 有序列表
-        ul: true, // 无序列表
-        link: true, // 链接
-        imagelink: true, // 图片链接
-        code: true, // code
-        table: true, // 表格
-        fullscreen: false, // 全屏编辑
-        readmodel: false, // 沉浸式阅读
-        htmlcode: true, // 展示html源码
-        help: true, // 帮助
-        undo: true, // 上一步
-        redo: true, // 下一步
-        trash: true, // 清空
-        save: true, // 保存（触发events中的save事件）
-        navigation: true, // 导航目录
-        alignleft: true, // 左对齐
-        aligncenter: true, // 居中
-        alignright: true, // 右对齐
-        subfield: true, // 单双栏模式
-        preview: true, // 预览
-      }, //markdown配置
-      handbook:"",
       draftLoading: false,
+      preview: true,
+      previewMarkdown: ''
     }
   },
   methods: {
     submit() {
-      let articleContent = document.querySelector('.v-show-content');
-      this.form.content = articleContent.innerHTML;
+      // let articleContent = document.querySelector('.v-show-content');
+      // this.form.content = articleContent.innerHTML;
       console.log(this.form);
       axios.postJson('/article/api/v1/addArticle',this.form)
       .then(res => {
@@ -150,8 +129,43 @@ export default {
     font-size: 14px;
   }
   .markdown {
+    position: relative;
     width: 100%;
-    height: 100%;
+  }
+  .markdown .btn {
+      box-shadow: 0 0 3px rgba(100, 100, 100, 0.8);
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      z-index: 100;
+      padding: 5px 10px;
+  }
+
+  .markdown textarea {
+      padding: 5px 15px;
+      display: block;
+      height: 500px !important;
+      width: 100%;
+      border: 1px solid #ddd;
+      resize: none;
+      font-size: 16px;
+  }
+
+  .markdown textarea:focus {
+      border-color: rgb(51, 204, 250);
+  }
+
+  .markdown>div {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      z-index: 99;
+      overflow-y: auto;
+      background: #f2f2f2;
+      transition: width ease cubic-bezier(0.075, 0.82, 0.165, 1);
+      padding: 10px 20px;
   }
 }
 

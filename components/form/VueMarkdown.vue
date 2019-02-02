@@ -1,14 +1,14 @@
 <template>
-    <div class="markdown">
-        <div class="md" v-html="markdownHtml"></div>
-    </div>
+  <div class="markdown">
+      <div class="md" v-html="markdownHtml"></div>
+  </div>
 </template>
 
 <script>
 
 import hljs from 'highlight.js'
-import '~assets/css/yeh-md-theme.css'
-import '~assets/css/ocean.min.css'
+import '@/assets/css/yeh-md-theme.css'
+import '@/assets/css/ocean.min.css'
 
 let marked = require('marked');
 marked.setOptions({

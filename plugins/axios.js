@@ -80,7 +80,7 @@ function tryHideFullScreenLoading() {
     }
   }, error => {
     tryHideFullScreenLoading();
-    switch(error.response.status) {
+    switch(error.response.code) {
       case 500:
         Message.error({
           message: '服务器出差去了~'

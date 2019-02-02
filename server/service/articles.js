@@ -113,7 +113,7 @@ let addArticle = (params,callback) => {
     return callback({
       code: 200,
       message: 'success',
-      result: result
+      result: null
     })
   })
 }
