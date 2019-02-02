@@ -1,9 +1,11 @@
 <template>
   <div class="admin">
     <my-header></my-header>
-    <side-menu></side-menu>
-    <div class="main">
-      <nuxt></nuxt>
+    <div class="section">
+      <side-menu></side-menu>
+      <div class="main">
+        <nuxt></nuxt>
+      </div>
     </div>
   </div>
 </template>
@@ -20,22 +22,27 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="less" scoped>
 .admin {
-  position: relative;
+  width: 100%;
   height: 100%;
   min-width: 960px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  .section {
+    width: 100%;
+    flex: 1;
+    display: flex;
+    .main {
+      flex: 1;
+      overflow-y: auto;
+      padding: 0 50px;
+    }
+  }
 }
 
-.main {
-  position: absolute;
-  top: 80px;
-  left: 150px;
-  right: 0;
-  bottom: 0;
-  overflow-y: auto;
-  padding: 0 50px;
-}
+
 </style>
 
 <style>

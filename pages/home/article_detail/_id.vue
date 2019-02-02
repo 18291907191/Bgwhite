@@ -3,7 +3,9 @@
     <header class="tc">
       <h2 class="pr"> <span>{{articleDetail.title?articleDetail.title: 'Article Detail'}}</span></h2>
     </header>
-    <div class="article" v-html="articleDetail.content"></div>
+    <div class="article">
+      <div ref="cont"></div>
+    </div>
   </section>
 </template>
 <script>
@@ -22,6 +24,8 @@ export default {
           return false;
         }
         this.articleDetail = res;
+        console.log(this.articleDetail.content);
+        this.$refs.cont.innerHTML = `${this.articleDetail.content}`;
       })
     }
   },

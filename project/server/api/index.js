@@ -1,18 +1,11 @@
-// let jwtAuth = require('../middleware/jwtAuth')
+let userAuth = require('../middleware/userAuth');
 
 module.exports = app => {
     //实现登陆拦截
-    // app.use('/api', jwtAuth)
+    app.use('/admin/api/v1', userAuth)
 
-    // app.get('/api', (req, res) => {
-    //     res.json({ message: '欢迎使用justyeh的API服务！' });
-    // })
-
-    app.use('/user/api/v1/', require('./user'));
-    app.use('/article/api/v1/', require('./articles'));
-
-    // app.use('/api/tag', require('./tag'))
-
-    // app.use('/api/post/tag', require('./postTag'))
+    app.use('/user/api/v1', require('./user'));
+    
+    app.use('/article/api/v1', require('./articles'));
 
 }

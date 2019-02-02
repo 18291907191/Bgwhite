@@ -97,6 +97,28 @@ let articleDetail = (params,callback) => {
     });
 }
 
+/**
+ * @description 添加文章
+ * @param {Object} params 参数
+ * @param {Function} callback 
+ */
+let addArticle = (params,callback) => {
+  articlesModel.addArticle(params,(err,result) => {
+    if(err) {
+      return callback({
+        code: 405,
+        message: err,
+      })
+    }
+    return callback({
+      code: 200,
+      message: 'success',
+      result: result
+    })
+  })
+}
+
 module.exports.article = article;
 module.exports.articleDetail = articleDetail;
 module.exports.articleListByTagName = articleListByTagName
+module.exports.addArticle = addArticle

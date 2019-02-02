@@ -54,7 +54,8 @@ module.exports = {
   /**
    * router of the project
    */
-  router: { 
+  router: {
+    middleware: 'adminAuth' 
   },
   /*
   ** Global CSS

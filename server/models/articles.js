@@ -54,5 +54,29 @@ class Articles {
       callback(false,result);
     })
   }
+  /**
+   * @description 添加文章
+   * @param {*} params 
+   * @param {*} callback 
+   */
+  addArticle(params,callback) {
+    // params.content.replace(/\'/g,'\'\'');
+    let sqlAddArticle = `insert into articles(title,title_img,content,status,abstract) values(?,?,?,?,?)`;
+    let sql = sqlAddArticle + ';';
+    let post = [
+      params.title,
+      params.title_img,
+      params.content,
+      params.status,
+      params.abstract
+    ];
+    console.log(post);
+    db.query(sql,post,(err,result) => {
+      if(err) {
+        return callback(true);
+      }
+      callback(false,result);
+    })
+  }
 }
 module.exports = Articles;

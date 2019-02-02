@@ -8,33 +8,30 @@
   </header>
 </template>
 
-<style scoped>
+<style lang="less" scoped>
 header {
   background: #1b8afa;
-  position: absolute;
-  left: 0;
-  right: 0;
+  width: 100%;
   height: 80px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  box-sizing: border-box;
   padding: 0 50px;
   font-size: 18px;
   color: #fff;
-}
-
-header .nav-left {
-  display: flex;
-  align-items: center;
-}
-
-header .nav-left img {
-  width: 40px;
-  border-radius: 100%;
-  margin-right: 20px;
-}
-
-header a {
-  color: rgba(250, 250, 250, 0.8);
+  a {
+    color: rgba(250, 250, 250, 0.8);
+    text-decoration: none;
+  }
+  .nav-left {
+    display: flex;
+    align-items: center;
+    img {
+      width: 40px;
+      border-radius: 100%;
+      margin-right: 20px;
+    }
+  }
 }
 </style>

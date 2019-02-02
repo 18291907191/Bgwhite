@@ -68,18 +68,18 @@
 <script>
 import axios from 'axios'
 
-import PageHeader from '@/components/admin/PageHeader'
-import Modal from '@/components/Modal'
-import FormGroup from '@/components/form/FormGroup'
+// import PageHeader from '@/components/admin/PageHeader'
+// import Modal from '@/components/Modal'
+// import FormGroup from '@/components/form/FormGroup'
 
 export default {
-    async asyncData() {
-        let tagsRes = await axios.get('/api/tag/list')
-        return {
-            tags: tagsRes.data.list
-        }
-    },
     layout: 'admin',
+    // async asyncData() {
+    //     let tagsRes = await axios.get('/api/tag/list')
+    //     return {
+    //         tags: tagsRes.data.list
+    //     }
+    // },
     data() {
         return {
             editTagModalShow: false,
@@ -93,48 +93,48 @@ export default {
         }
     },
     components: {
-        PageHeader,
-        Modal,
-        FormGroup
+        // PageHeader,
+        // Modal,
+        // FormGroup
     },
     methods: {
-        bindEditTag(index) {
-            this.editTag = this.tags[index]
-            this.editTagModalShow = true
-        },
-        updateTag() {
-            axios.post('/api/tag/update', editTag).then(res => {
-                if (res.data.code !== 200) {
-                    console.error(data.message)
-                }
-                this.post.tags.push({
-                    postTagId: res.data.insertId,
-                    tagId: tag.id,
-                    name: tag.name
-                })
-            });
+        // bindEditTag(index) {
+        //     this.editTag = this.tags[index]
+        //     this.editTagModalShow = true
+        // },
+        // updateTag() {
+        //     axios.post('/api/tag/update', editTag).then(res => {
+        //         if (res.data.code !== 200) {
+        //             console.error(data.message)
+        //         }
+        //         this.post.tags.push({
+        //             postTagId: res.data.insertId,
+        //             tagId: tag.id,
+        //             name: tag.name
+        //         })
+        //     });
 
-        },
-        delTag() {
-           this.$notify({
-               type:'error',
-                title: '测试',
-                text: 'notification测试'
-            });
-            /*this.$notify({
-               type:'success',
-                title: '测试',
-                text: 'notification测试'
-            });*/
+        // },
+        // delTag() {
+        //    this.$notify({
+        //        type:'error',
+        //         title: '测试',
+        //         text: 'notification测试'
+        //     });
+        //     /*this.$notify({
+        //        type:'success',
+        //         title: '测试',
+        //         text: 'notification测试'
+        //     });*/
             
 
-            //this.delTagModalShow = true
-        },
-        async showPost(tagId) {
-            let postsRes = await axios.get(`/api/post/list/${tagId}`)
-            this.posts = postsRes.data.list
-            this.postsShow = true
-        }
+        //     //this.delTagModalShow = true
+        // },
+        // async showPost(tagId) {
+        //     let postsRes = await axios.get(`/api/post/list/${tagId}`)
+        //     this.posts = postsRes.data.list
+        //     this.postsShow = true
+        // }
     }
 }
 </script>

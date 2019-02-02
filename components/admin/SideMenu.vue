@@ -3,11 +3,11 @@
     <ul>
       <li>
         <nuxt-link to="/admin">
-          <i class="fa fa-list"></i>博客管理</nuxt-link>
+          <i class="el-icon-document"></i>文章管理</nuxt-link>
       </li>
       <li>
         <nuxt-link to="/admin/tag">
-          <i class="fa fa-tags"></i>标签管理</nuxt-link>
+          <i class="el-icon-tickets"></i>标签管理</nuxt-link>
       </li>
     </ul>
   </div>
@@ -15,11 +15,8 @@
 
 <style scoped>
 .side-menu {
-  position: absolute;
-  top: 80px;
-  bottom: 0;
-  left: 0;
   width: 150px;
+  height: 100%;
   box-shadow: 0 5px 5px rgba(100, 100, 100, 0.5);
   background: #263238;
   z-index: 99;

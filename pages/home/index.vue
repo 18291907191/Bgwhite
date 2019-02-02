@@ -11,7 +11,7 @@
         </div>
         <div class="cont-txt">
           <nuxt-link class="cont-tit" :to="`home/article_detail/${item.id}`">{{item.title}}</nuxt-link>
-          <p>{{item.desc}}
+          <p>{{item.abstract}}
           </p>
           <ul class="tags">
             标签:
