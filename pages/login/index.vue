@@ -76,7 +76,7 @@ export default {
             return false;
           }
           setToken(res.token);
-          this.$router.back();
+          this.$router.replace('/admin')
           return
         })
         .catch(error => {

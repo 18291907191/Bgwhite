@@ -26,16 +26,15 @@ a {
   display: block;
   height: 60px;
   line-height: 60px;
-  color: #fff;
+  color: #ffffff;
   border-bottom: 1px solid rgba(100, 100, 100, 0.3)
 }
 
 a.nuxt-link-exact-active {
-  color: #1b8afa
+  color: #1b8afa;
 }
 
 i {
   margin: 0 10px 0 20px;
-  ;
 }
 </style>

@@ -1,20 +1,20 @@
 <template>
   <section class="wraper">
-    <el-form ref="form" :model="form" label-width="86px">
+    <el-form ref="form" :model="form" label-width="92px" :rules="rules">
     <!--S 标题 -->
       <admin-title :title="title.tit1"></admin-title>
-      <el-form-item label="Article Title">
+      <el-form-item label="Article Title" prop="title">
         <el-col :span="6">
           <el-input v-model="form.title"></el-input>
         </el-col>
       </el-form-item>
-      <el-form-item label="Title Image">
+      <el-form-item label="Title Image" prop="titleImage">
         <el-col :span="6">
           <el-input v-model="form.title_img"></el-input>
         </el-col>
       </el-form-item>
       <admin-title :title="title.tit2"></admin-title>
-      <el-form-item label="Article Tags">
+      <el-form-item label="Article Tags" prop="titleTags">
         <el-col :span="6">
           <el-select
             style="width: 100%;"
@@ -34,12 +34,12 @@
         </el-col>
       </el-form-item>
       <admin-title :title="title.tit3"></admin-title>
-      <el-form-item label="Abstract">
+      <el-form-item label="Abstract" prop="titleAbstract">
         <textarea class="abstract" v-bind:maxlength="190" v-model="form.abstract" rows="5" cols="100" type="text" name="abstract">
         </textarea>
         <span style="font-size:16px;"><font style="color: #3576e0;">{{190 - form.abstract.length}}</font>/190</span>
       </el-form-item>
-      <el-form-item label="Content">
+      <el-form-item label="Content" prop="content">
         <el-col class="markdown">
           <el-button class="btn btn-small btn-main" @click="preview = !preview">{{preview ? '编辑' : '预览'}}</el-button>
           <textarea v-model="form.content"></textarea>
@@ -48,7 +48,7 @@
       </el-form-item>
       <el-form-item>
         <el-col>
-          <el-button type="primary" @click.native="submit">确认发布</el-button>
+          <el-button type="primary" @click.native="submit('rules')">确认发布</el-button>
           <el-button type="primary" @click.native="saveDraft" :loading="draftLoading">保存草稿</el-button>
         </el-col>
       </el-form-item>
@@ -101,18 +101,54 @@ export default {
       textNum: 200,
       draftLoading: false,
       preview: true,
-      previewMarkdown: ''
+      previewMarkdown: '',
+      rules: {
+        title: [
+          { required: true, message: '请输入文章标题', trigger: 'blur'},
+          { min: 3, max: 10, message: '长度在3-10个字符',trigger: 'blur'}
+        ],
+        titleImage: [
+          { required: true, message: '请输入标题图片', trigger: 'blur'},
+        ],
+        titleTags: [
+          { required: true, message: '请选择文章标签', trigger: 'blur'},
+        ],
+        titleAbstract: [
+          { required: true, message: '请输入文章摘要', trigger: 'blur'},
+        ],
+        content: [
+          { required: true, message: '请输入文章内容', trigger: 'bur'},
+        ]
+      }
     }
   },
   methods: {
     submit() {
-      // let articleContent = document.querySelector('.v-show-content');
-      // this.form.content = articleContent.innerHTML;
-      console.log(this.form);
+      let isOk = this.validata();
+      if(!isOk) {
+        return ;
+      }
       axios.postJson('/article/api/v1/addArticle',this.form)
       .then(res => {
-        console.log(res);
+        if(!res) {
+          this.$message({
+            message: '发布成功',
+            type: 'success',
+          })
+          console.log("发布成功");
+        }
       })
+    },
+    // 表单校验
+    validata() {    
+      let isForm;
+      this.$refs.form.validate(valid => {
+        isForm = valid;
+      });
+      if (!isForm) {
+        return false;
+      }
+      return true;
     },
     saveDraft() {
       this.draftLoading = true;
