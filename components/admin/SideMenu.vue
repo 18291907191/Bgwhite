@@ -2,7 +2,7 @@
   <div class="side-menu">
     <ul>
       <li>
-        <nuxt-link to="/admin">
+        <nuxt-link to="/admin/article">
           <i class="el-icon-document"></i>文章管理</nuxt-link>
       </li>
       <li>

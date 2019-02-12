@@ -135,7 +135,6 @@ export default {
             message: '发布成功',
             type: 'success',
           })
-          console.log("发布成功");
         }
       })
     },
@@ -176,7 +175,6 @@ export default {
       z-index: 100;
       padding: 5px 10px;
   }
-
   .markdown textarea {
       padding: 5px 15px;
       display: block;
