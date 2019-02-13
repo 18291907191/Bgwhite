@@ -103,7 +103,7 @@ let articleDetail = (params,callback) => {
  * @param {Function} callback 
  */
 let addArticle = (params,callback) => {
-  articlesModel.addArticle(params,(err,result) => {
+  articlesModel.addArticle(params,(err) => {
     if(err) {
       return callback({
         code: 405,
@@ -118,7 +118,45 @@ let addArticle = (params,callback) => {
   })
 }
 
+/**
+ * @description 查询所有标签
+ * @param {Function} callback 
+ */
+let articleTags = (callback) => {
+  tags.articlesTags({articleId:''},(err,data) => {
+    if(err) {
+      return callback({
+        code: 405,
+        message: err
+      })
+    }
+    return callback({
+      code: 200,
+      message: 'success',
+      result: data
+    })
+  })
+}
+
+let deleteArticle = (params,callback) => {
+  articlesModel.deleteArticle(params,(err) => {
+    if(err) {
+      return callback({
+        code: 405,
+        message: err
+      })
+    }
+    return callback({
+      code: 200,
+      message: 'success',
+      result: null
+    })
+  }) 
+}
+
 module.exports.article = article;
 module.exports.articleDetail = articleDetail;
 module.exports.articleListByTagName = articleListByTagName
 module.exports.addArticle = addArticle
+module.exports.articleTags = articleTags
+module.exports.deleteArticle = deleteArticle

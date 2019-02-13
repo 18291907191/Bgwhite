@@ -34,4 +34,22 @@ router.post('/addArticle', (req,res,next) => {
   }
 })
 
+//查询所有标签
+router.get('/articleTags',(req,res,next) => {
+  try {
+    articles.articleTags(result => res.json(result));
+  } catch(err) {
+    res.json({ code: 500, message: '服务器错误！'})
+  }
+})
+
+// 根据id删除文章
+router.post('/deleteArticle',(req,res,next) => {
+  try {
+    articles.deleteArticle(req.body,result => res.json(result));
+  } catch(err) {
+    res.json({ code: 500, message: '服务器错误！'})
+  }
+})
+
 module.exports = router;

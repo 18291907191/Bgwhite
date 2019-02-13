@@ -60,7 +60,6 @@ class Articles {
    * @param {*} callback 
    */
   addArticle(params,callback) {
-    // params.content.replace(/\'/g,'\'\'');
     let sqlAddArticle = `insert into articles(title,title_img,content,status,abstract) values(?,?,?,?,?)`;
     let sql = sqlAddArticle + ';';
     let post = [
@@ -72,6 +71,25 @@ class Articles {
     ];
     console.log(post);
     db.query(sql,post,(err,result) => {
+      if(err) {
+        return callback(true);
+      }
+      callback(false,result);
+    })
+  }
+  /**
+   * @description 根据id删除文章内容
+   * @param {*} params 
+   * @param {*} callback 
+   */
+  deleteArticle(params,callback) {
+    let sqlDelete = `delete from articles where 1=1`;
+    if(params.id !== '') {
+      let DeleteData = ` and id = '${params.id}'`;
+      sqlDelete += DeleteData;
+    }
+    let sql = sqlDelete + ';';
+    db.query(sql,[],(err,result) => {
       if(err) {
         return callback(true);
       }

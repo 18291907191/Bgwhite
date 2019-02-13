@@ -2,7 +2,7 @@ let db = require('../util/database.query.js')
 
 class ArticlesTags {
   /**
-   * @description 查询所有标签
+   * @description 查询所有标签 未去重
    * @param {*} params  标签Id
    * @param {*} callback 结果回调
    */
@@ -19,6 +19,6 @@ class ArticlesTags {
       }
       return callback(false,result);
     })
-  }
+  };
 }
 module.exports = ArticlesTags;

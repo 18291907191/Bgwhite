@@ -46,14 +46,12 @@ export default {
   },
   methods: {
     getData() {
-        // this.$nuxt.$loading.start()
       axios.get('/article/api/v1/list',this.form)
       .then(res => {
         if(!res) {
           return false;
         }
         this.articleList = res;
-        // this.$nuxt.$loading.finish();
       })
     },
     searchTags(tagName) {

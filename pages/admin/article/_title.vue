@@ -8,13 +8,14 @@
           <el-input v-model="form.title"></el-input>
         </el-col>
       </el-form-item>
-      <el-form-item label="Title Image" prop="titleImage">
+      <el-form-item label="Title Image" prop="title_img"
+      >
         <el-col :span="6">
           <el-input v-model="form.title_img"></el-input>
         </el-col>
       </el-form-item>
       <admin-title :title="title.tit2"></admin-title>
-      <el-form-item label="Article Tags" prop="titleTags">
+      <el-form-item label="Article Tags" prop="tags">
         <el-col :span="6">
           <el-select
             style="width: 100%;"
@@ -26,15 +27,15 @@
             placeholder="请选择文章标签">
             <el-option
               v-for="item in tagList"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value">
+              :key="item.id"
+              :label="item.tag"
+              :value="item.id">
             </el-option>
           </el-select>
         </el-col>
       </el-form-item>
       <admin-title :title="title.tit3"></admin-title>
-      <el-form-item label="Abstract" prop="titleAbstract">
+      <el-form-item label="Abstract" prop="abstract">
         <textarea class="abstract" v-bind:maxlength="190" v-model="form.abstract" rows="5" cols="100" type="text" name="abstract">
         </textarea>
         <span style="font-size:16px;"><font style="color: #3576e0;">{{190 - form.abstract.length}}</font>/190</span>
@@ -88,16 +89,12 @@ export default {
       form: {
         title: '',
         tags: [],
-        title_img:'',
+        title_img: '',
         abstract: '',
         content: '',
         status: 1,
       }, //提交数据
-      tagList: [
-        {label: 'vue.js',value: 'vue.js'},
-        {label: 'nuxt.js',value:'nuxt.js'},
-        {label:'node.js',value:'node.js'}
-      ], //标签选择器
+      tagList: [], //标签选择器
       textNum: 200,
       draftLoading: false,
       preview: true,
@@ -105,21 +102,25 @@ export default {
       rules: {
         title: [
           { required: true, message: '请输入文章标题', trigger: 'blur'},
-          { min: 3, max: 10, message: '长度在3-10个字符',trigger: 'blur'}
+          { min: 3, max: 10, message: '长度在3-10个字符',trigger: ['change','blur']}
         ],
-        titleImage: [
+        title_img: [
           { required: true, message: '请输入标题图片', trigger: 'blur'},
         ],
-        titleTags: [
-          { required: true, message: '请选择文章标签', trigger: 'blur'},
+        tags: [
+          { required: true, message: '请选择文章标签', trigger: 'change'},
         ],
-        titleAbstract: [
-          { required: true, message: '请输入文章摘要', trigger: 'blur'},
+        abstract: [
+          { required: true, message: '请输入文章摘要', trigger: ['change','blur']},
         ],
         content: [
-          { required: true, message: '请输入文章内容', trigger: 'bur'},
+          { required: true, message: '请输入文章内容', trigger: ['blur','change']},
         ]
-      }
+      },
+      params: {
+        title: '',
+        tag: ''
+      },
     }
   },
   methods: {
@@ -140,6 +141,7 @@ export default {
     },
     // 表单校验
     validata() {    
+      console.log(this.form);
       let isForm;
       this.$refs.form.validate(valid => {
         isForm = valid;
@@ -151,6 +153,37 @@ export default {
     },
     saveDraft() {
       this.draftLoading = true;
+    },
+    getData() {
+      axios.get('/article/api/v1/list',this.params)
+      .then(res => {
+        if(!res) {
+          return false;
+        }
+        this.form = res[0];
+      })
+    },
+    getTags() {
+      let hash  = {};
+      let arr = [];
+      axios.get('/article/api/v1/articleTags')
+      .then(res => {
+        arr = res.reduce((item,next) => {
+          hash[next.tag] ? '' : hash[next.tag] = true && item.push(next);
+          return item;
+        },[]);
+        this.tagList = arr;  
+      })
+    }
+  },
+  created() {
+    this.params.title = this.$route.params.title !== 'increase' ? this.$route.params.title : '';
+    console.log(this.params.title);
+  },
+  mounted() {
+    this.getTags();
+    if(this.params.title) {
+      this.getData();
     }
   }
 }
