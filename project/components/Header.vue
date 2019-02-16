@@ -121,9 +121,6 @@ export default {
 @media screen and (max-width: 960px) {
     header {
       padding: 0;
-      .hd {
-        justify-content: center;
-      }
     h3 {
       font-size: 16px;
       color: rgba(250, 250, 250, 0.85);
@@ -138,9 +135,6 @@ export default {
         border-radius: 50%;
         margin: 0 auto;
       }
-    }
-    .panel {
-      display: none;
     }
     .nav {
       width: 100%;

@@ -134,9 +134,4 @@ header {
     }
   }
 }
-@media screen and (max-width: 960px) {
-  .article {
-    width: 100%;
-  }
-}
 </style>
