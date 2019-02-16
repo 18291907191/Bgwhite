@@ -173,7 +173,7 @@ export default {
       }
       button {
         display: inline-block;
-        padding: 0 10px;
+        padding: 0 5px;
         height: 32px;
         line-height: 28px;
         outline: none;
