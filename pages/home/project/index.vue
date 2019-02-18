@@ -18,6 +18,73 @@
           </li>
         </ul>
       </div>
+      <div class="public-program">
+        <div class="title">
+          <h3>公众号项目</h3>
+          <p>以下程序请在移动端微信处打开</p>
+        </div>
+        <ul>
+          <li v-for="i in 5">
+            <div>
+              <div class="cont">
+                <p class="hd">医疗服务行业</p>
+                <p class="left">安徽医科大学第二附属医院，提供在线挂号，预约，支付，住院等一些列功能，为便民化，医疗化做出重大贡献。</p>
+              </div>
+            </div>
+            <a href="/" target="_Blank">模块的标题链接</a>
+          </li>
+        </ul>
+      </div>
+      <div class="vue-program">
+        <div class="title">
+          <h3>vue项目</h3>
+        </div>
+        <ul>
+          <li>
+            <div>
+              <div class="cont">
+                <p class="hd">医疗器材销售行业</p>
+                <p class="left">为广大医院提供销售器材为主，为医疗设施的普及含有重大意义。</p>
+              </div>
+            </div>
+            <a href="/" target="_Blank">赛泰克官网</a>
+          </li>
+          <li>
+            <div>
+              <div class="cont">
+                <p class="hd">医疗器材销售行业</p>
+                <p class="left">赛泰克项目管理</p>
+              </div>
+            </div>
+            <a href="/" target="_Blank">赛泰克管理后台</a>
+          </li>
+          <li>
+            <div>
+              <div class="cont">
+                <p class="hd">医疗服务行业</p>
+                <p class="left">医疗服务行业医院端，为医院提供技术现代化，如远程会诊，转诊，在线支付，预约挂号，住院，等已便民服务为宗旨，持续努力中。</p>
+              </div>
+            </div>
+            <a href="/" target="_Blank">佰医汇医疗系统医院端</a>
+          </li>
+        </ul>
+      </div>
+      <div class="nuxt-pogram">
+        <div class="title">
+          <h3>Nuxt项目</h3>
+        </div>
+        <ul>
+          <li>
+            <div>
+              <div class="cont">
+                <p class="hd">SSR博客系统</p>
+                <p class="left">Nuxt.js+Vue.js+node.js+Mysql技术栈搭建SSR个人博客系统</p>
+              </div>
+            </div>
+            <a href="/" target="_Blank">狗尾草的前端博客</a>
+          </li>
+        </ul>
+      </div>
     </div>
   </section>
 </template>
@@ -34,7 +101,7 @@ export default {
     box-sizing: border-box;
     box-shadow: 0 0 6px rgba(100, 100, 100, 0.4);
     padding: 20px 30px;
-    .small-program {
+    .small-program,.public-program,.vue-program,.nuxt-pogram {
       .title {
         box-sizing: border-box;
         padding-left: 24px;

@@ -53,6 +53,9 @@ export default {
     padding: 40px 50px;
     background-color: @bg-black;
     .hd {
+      .csp {
+        font-size: 14px;
+      }
       color: rgba(250, 250, 250, 0.85);
       .panel {
         width: 356px;
@@ -123,6 +126,9 @@ export default {
       padding: 0;
       .hd {
         justify-content: center;
+      .csp {
+        font-size: 14px;
+      }
       }
     h3 {
       font-size: 16px;
