@@ -1,6 +1,7 @@
 # bgwhiteFront
 
-> My blog project
+> My blog project 
+使用vue+nuxt完成的第一版本的狗尾草前端博客
 
 ## Build Setup
 
